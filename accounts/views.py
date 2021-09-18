@@ -157,14 +157,11 @@ def createCustomer(request):
 			phone = request.POST['phone']
 			form.save()
 			customer = Customer.objects.get(phone=phone)
-			print(customer)
 			customerProfile = CustomerProfile(
 				customer= customer, 
 				total_ordering_price=0,
 			)
-			print(customerProfile)
 			customerProfile.save()
-			print(CustomerProfile.objects.all())
 			return redirect('/')
 	context = {
 		'form':form
@@ -185,3 +182,15 @@ def updateCustomer(request , pk):
 		'form':form
 		}
 	return render(request, 'accounts/customer_form.html', context)
+
+def deleteCustomer(request,pk):
+	customer = Customer.objects.get(id=pk)
+	form = CustomerForm(instance=customer)
+	if request.method == "POST":
+		customer.delete()
+		return redirect('/')
+	context = {
+		'form':form
+		}
+	return render(request, 'accounts/customer_delete_form.html',context)
+

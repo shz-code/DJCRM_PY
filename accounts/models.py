@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Customer(models.Model):
     name = models.CharField(max_length=100, null=True)
-    phone = models.CharField(max_length=20, null=True)
+    phone = models.CharField(max_length=20, null=True,unique=True)
     email = models.EmailField(null=True)
     date_cerated = models.DateTimeField(auto_now_add=True, null=True)
 
