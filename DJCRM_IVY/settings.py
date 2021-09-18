@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0v@emdh@a3^4=zmt%jq2jj1jkr!%8yz**mdgdk^s%!(^49r*1e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["DJCRM-py.herokuapp.com"]
+ALLOWED_HOSTS = ["djcrm-py.herokuapp.com/"]
 
 
 # Application definition
