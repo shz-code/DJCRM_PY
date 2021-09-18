@@ -1,0 +1,165 @@
+{% extends 'accounts/main.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+{% block content %}
+
+{% include 'accounts/status.html' %}
+
+<br>
+
+
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card mb-3 text-center">
+				<div class="card-header">
+					<h5 class="card-title">Highest Paying Customers Till date</h5>
+				</div>
+				<div class="card-body">
+				<table class='table table-sm table-striped text-center'>
+				<thead>
+				<tr>
+				<th>
+				Name
+				</th>
+				<th>
+				Amount
+				</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for customer_pro in customer_profile %}
+				<tr>
+				<td>
+				{{customer_pro.customer.name}}
+				</td>
+				<td>
+				{{customer_pro.total_ordering_price}} $
+				</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="col-md">
+			<div class="card mb-3 text-center">
+				<div class="card-header">
+					<h5 class="card-title">Transaction in Last 24 Hours</h5>
+				</div>
+				<div class="card-body">
+					<h3 class="card-title">{{total}}$</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col">
+		<div class="col-md">
+			<div class="card mb-3 text-center">
+				<div class="card-header">
+					<h5 class="card-title">Top Selling Products</h5>
+				</div>
+				<div class="card-body">
+					<table class='table table-sm table-striped'>
+					<thead>
+					<tr>
+					<th>
+					Name
+					</th>
+					<th>
+					Quantity
+					</th>
+					</tr>
+					</thead>
+					{% for product in product_quantity %}
+					<tr>
+					<td>
+					{{product.product.name}}
+					</td>
+					<td>
+					{{product.quantity}}
+					</td>
+					</tr>
+					{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-5">
+		<h5>CUSTOMERS:</h5>
+		<hr>
+		<div>
+
+
+		</div>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href=" {% url 'accounts:create_customer' %} ">Create Customer</a>
+			<table class="table table-sm text-center">
+				<thead>
+					<tr>
+						<th>Customer</th>
+						<th>Phone</th>
+						<th>Orders</th>
+						<th>Total purchase</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for customer in customers %}
+					<tr>
+						<td><a href="{{customer.get_absolute_url}}">{{customer.name}}</a></td>
+						<td>{{customer.phone}}</td>
+						<td>{{customer.get_orders}}</td>
+						<td>{{customer.get_orders_price}} $ </td>
+					</tr>
+					{% endfor %}
+				</tbody>
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>LAST 5 ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+			<a class="btn btn-primary  btn-sm btn-block" href=" {% url 'accounts:create_order' %} ">Create Order</a>
+			<table class="table table-sm text-center">
+				<tr>
+					<th>Customer</th>
+					<th>Product</th>
+					<th>Date Orderd</th>
+					<th>Status</th>
+					<th>Update</th>
+					<th>Remove</th>
+				</tr>
+
+				{% for order in orders_limited %}
+				<tr>
+					<td>{{order.customer.name}}</td>
+					<td>{{order.product.name}}</td>
+					<td>{{order.date_created}}</td>
+					<td>{{order.status}}</td>
+					<td><a class='btn btn-sm btn-info text-white'
+							href=" {% url 'accounts:update_order' order.id %} ">Update</a></td>
+					<td><a class='btn btn-sm btn-danger text-white'
+							href=" {% url 'accounts:delete_order' order.id %} ">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock content %}

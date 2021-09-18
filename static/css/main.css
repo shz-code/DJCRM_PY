@@ -1,0 +1,47 @@
+a {
+    text-decoration: none;
+}
+
+body{
+    background-color: #ebeff5;
+}
+
+
+#total-orders{
+    background-color: #4cb4c7;
+}
+
+
+#orders-delivered{
+    background-color: #7abecc;
+}
+
+#orders-pending{
+    background-color: #7CD1C0;
+}
+
+.table {
+    overflow-x: scroll;
+}
+
+
+label{
+    font-size: 1.2rem;
+    line-height: 20px;
+    margin: 0 5px 0 5px;
+}
+
+.customer_search_form{
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+}
+
+select{
+    padding: 5px;
+    margin: 5px;
+}
+/* #id_product , #id_status{
+    padding: 5px;
+    margin: 5px;
+} */
